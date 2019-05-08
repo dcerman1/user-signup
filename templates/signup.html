@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Signup</h1>
+      <form action="/welcome" method="POST">
+        <table>
+            <tr>
+                <td><label for="username">Username:</label></td>
+                <td>
+                    <input type="text" name="username" value="{{ username }}" pattern="[a-zA-Z\d^/s].{2,21}" 
+                    title="Usernames must be between 3 and 20 characters and cannot contain spaces" required>
+                        {% if username_error %}
+                            <p class="error">{{ username_error }}</p>
+                         {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="password">Password:</label></td>
+                    <td>
+                        <input type="password" name="password" value="{{ password }}" pattern="[a-zA-Z\d^/s].{7,21}" 
+                        title="Passwords must be between 8 and 20 characters and cannot contain spaces" required>
+                            {% if password_error %}
+                                <p class="error">{{ password_error }}</p>
+                            {% endif %}
+                </td>
+            </tr>
+                    
+            <tr>
+                <td><label for="verify">Verify Password:</label></td>
+                    <td>
+                        <input type="password" name="verify" value="{{ password }}" pattern="[a-zA-Z\d^/s].{7,21}"
+                        title="Usernames must be between 8 and 20 characters and cannot contain spaces" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="email">Email (optional):</label></td>
+                    <td>
+                    <input type="text" name="email" value="{{ email }}" pattern="[a-z0-9._%+-^/s]+@[a-z0-9.-^/s]+\.[a-z^/s].{2,}$"
+                    title="Emails must not contain spaces and must contain an @ and ." >
+                        {% if email_error %}
+                            <p class="error">{{ email_error }}</p>
+                        {% endif %}
+                </td>
+            </tr>
+
+        </table>
+        <input type="submit" value="Submit"></td>
+      </form>
+{% endblock %}
